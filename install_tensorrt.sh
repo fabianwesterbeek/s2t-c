@@ -13,10 +13,10 @@ RELEASE_URL="https://github.com/mpi4py/mpi4py/archive/refs/tags/${MPI4PY_VERSION
 curl -L ${RELEASE_URL} | tar -zx -C /tmp
 # Bypassing compatibility issues with higher versions (>= 69) of setuptools.
 sed -i 's/>= 40\.9\.0/>= 40.9.0, < 69/g' /tmp/mpi4py-${MPI4PY_VERSION}/pyproject.toml
-pip3 install /tmp/mpi4py-${MPI4PY_VERSION}
+py310_env/bin/python -m pip install /tmp/mpi4py-${MPI4PY_VERSION}
 rm -rf /tmp/mpi4py*
 
 echo ""
 echo "###########################[ Installing TensorRT-LLM ]###########################"
-pip3 install --no-cache-dir -U torch==2.1.2
-pip3 install --no-cache-dir tensorrt_llm==0.8.0.dev2024012301 --extra-index-url https://pypi.nvidia.com
+py310_env/bin/python -m pip install --no-cache-dir -U torch==2.1.2
+py310_env/bin/python -m pip install --no-cache-dir tensorrt_llm==0.8.0.dev2024012301 --extra-index-url https://pypi.nvidia.com
